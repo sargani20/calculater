@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <title>It's a game not a language🙂</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background:#111;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .calculator{
+            width: 30%;
+            height: 32rem;
+            background:#1e1e24;
+            border-radius: 20px;
+            margin-top: 7%;
+            margin-left: 35%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+        }
+        
+        .calculator input{
+            width: 90%;
+            height: 6rem;
+            color: #ffffff;
+            text-align: right;
+            padding-right: 15px;
+            background-color: #0d0d11;
+            border: 1px solid #2a2a35;
+            font-size: 40px;
+            border-radius: 15px;
+            margin-top: 5%;
+            margin-left: 5%;
+        }
+        
+        .calculator input:focus{
+            outline: none;
+            border-color: #ff9500;
+        }
+
+        .buttons{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 7%;
+            padding: 0 5%;
+        }
+
+        /* Common button styling */
+        .buttons button {
+            height: 3.2rem;
+            color: white;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: 600;
+            border-radius: 12px;
+            border: none;
+        }
+
+        /* Number buttons styling */
+        .buttons .num{
+            background-color: #2c2c35;
+        }
+        .buttons .num:hover{
+            background-color: #3d3d49;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        /* Operator buttons styling */
+        .buttons .op{
+            background-color: #ff9500;
+            color: #ffffff;
+        }
+        .buttons .op:hover{
+            background-color: #e08300;
+            box-shadow: 0 0 12px rgba(255, 149, 0, 0.4);
+        }
+
+        /* Clear & Delete buttons styling */
+        .buttons .clear{
+            background-color: #ff3b30;
+            color: #ffffff;
+        }
+        .buttons .clear:hover{
+            background-color: #d72c21;
+            box-shadow: 0 0 12px rgba(255, 59, 48, 0.4);
+        }
+
+        /* Equal button styling */
+        .buttons .equal{
+            background-color: #34c759;
+            color: #ffffff;
+        }
+        .buttons .equal:hover{
+            background-color: #28a745;
+            box-shadow: 0 0 12px rgba(52, 199, 89, 0.4);
+        }
+
+        /* Click Animation */
+        .buttons button:active{
+            transform: scale(0.95);
+        }
+
+        @media (max-width: 768px) {
+            .calculator { width: 90%; margin: 20% auto 0 auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" readonly>
+
+        <div class="buttons">
+            <button class="clear" onclick="clr()">AC</button>
+            <button class="clear" onclick="del()">⌫</button>
+            <button class="op" onclick="add('%')">%</button>
+            <button class="op" onclick="add('/')">÷</button>
+
+            <button class="num" onclick="add('7')">7</button>
+            <button class="num" onclick="add('8')">8</button>
+            <button class="num" onclick="add('9')">9</button>
+            <button class="op" onclick="add('*')">×</button>
+
+            <button class="num" onclick="add('4')">4</button>
+            <button class="num" onclick="add('5')">5</button>
+            <button class="num" onclick="add('6')">6</button>
+            <button class="op" onclick="add('-')">−</button>
+
+            <button class="num" onclick="add('1')">1</button>
+            <button class="num" onclick="add('2')">2</button>
+            <button class="num" onclick="add('3')">3</button>
+            <button class="op" onclick="add('+')">+</button>
+
+            <button class="num" onclick="add('0')">0</button>
+            <button class="num" onclick="add('.')">.</button>
+            <button class="equal" style="grid-column: span 2;" onclick="calc()">=</button>
+        </div>
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+
+        function add(value){
+            display.value += value;
+        }
+
+        function clr(){
+            display.value = '';
+        }
+
+        function del(){
+            display.value = display.value.slice(0, -1);
+        }
+
+        function calc(){
+            try{
+                display.value = eval(display.value);
+            }catch{
+                display.value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
